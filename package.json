@@ -2,7 +2,7 @@
   "name": "secretfriendbackend",
   "version": "1.0.0",
   "description": "Backend for SecretFriendProject ",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --transpile-only src/server.ts"
