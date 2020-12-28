@@ -4,14 +4,19 @@ import { Request, Response } from 'express';
 
 export default{
     async sortAndSendHandler(request: Request, response: Response){ //error handler
-        const  {
-            participants
-        } = request.body.data;
        
+        console.log(request.body);
+        
+       
+         const  {
+            participants
+        } = request.body;
         let sorted = await SortService.SortUsers(participants);
         let cont = 0
         sorted.forEach(
             async user => {
+                console.log(user);
+                
                 EmailService.sendMail('Secret Friend - No Reply','ScretFriend@noreply.com', user.email, "Secret Friend Project", `Your secret friend is ${user.sortedName} and it's email is ${user.sortedEmail}`).
                 then(
                     success => {

@@ -1,6 +1,6 @@
 import * as nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
 
+require('dotenv/config');
 
 export default {
     async sendMail(from: string, fromEmail: string, toEmail: string, subject: string, mensage: string): Promise<any>{
@@ -9,8 +9,8 @@ export default {
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'email',
-                    pass: 'password'
+                    user: process.env.EMAIL,
+                    pass: process.env.PASSWORD
                 }
             });
 
