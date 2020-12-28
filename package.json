@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "start": "ts-node src/server.ts",
     "postinstall": "npm run build-ts",
-    "build-ts": "tsc"
+    "build-ts": "ts-node src/server.ts"
   },
   "author": "Thales Morato",
   "license": "MIT",
