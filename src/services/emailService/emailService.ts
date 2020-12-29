@@ -22,10 +22,12 @@ export default {
                 html: `<h1>${mensage}</h1>`
             }).then(
                 success => {
+                    
                     resolve(success);
                 }
             ).catch(
                 err=> {
+                    
                     reject(err);
                 }
             )

@@ -20,7 +20,6 @@ export default {
             let hasErrors: boolean = true;
             while (hasErrors){
                 users.forEach((user: UserInterface) => {
-                    console.log(user);
                     let possibleSortedUsers = sorted.filter((possibleUser) => possibleUser.id != user.id);
                     if (possibleSortedUsers.length > 0){
                         let index = Math.floor(Math.random() * (possibleSortedUsers.length - 1));

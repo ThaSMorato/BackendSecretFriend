@@ -11,34 +11,32 @@ export default{
          const  {
             participants
         } = request.body;
+        
         let sorted = await SortService.SortUsers(participants);
         let cont = 0
+        let ret :Array<{email:string, response:string, error?:any}> = [];
         sorted.forEach(
             async user => {
-                console.log(user);
-                
                 EmailService.sendMail('Secret Friend - No Reply','ScretFriend@noreply.com', user.email, "Secret Friend Project", `Your secret friend is ${user.sortedName} and it's email is ${user.sortedEmail}`).
                 then(
                     success => {
                         cont = cont + 1;
-                        console.log(success);
+                        ret.push({email: user.email, response: "Successfully sent"});
+
                         if(cont == sorted.length) {
-                            console.log('cabo');
-                            return response.json({data:`${cont} enviados com sucesso`})
+                            return response.json({data:ret})
                         }
                     }
                 ).catch(
                     errr => {
                         cont = cont + 1;
-                        console.log(errr)
+                        ret.push({email: user.email, response: "An error ocurred", error: errr});
                         if(cont == sorted.length) {
-                            console.log('cabo');
-                            return response.json({data:`${cont - 1} enviados com sucesso`})
+                            return response.json({data:ret})
                         }
                     }
                 )
             }
         )
-        return response.json({data:` enviados com sucesso`})
     }
 }
